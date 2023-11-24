@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Flex:opsz,wght@8..144,149;8..144,407;8..144,599&display=swap');
+
+body, html {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.459);
+}
+
+header button {
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto Flex', sans-serif;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0;
+    margin: 25px;
+}
+
+header button:hover,
+.filters button:hover {
+    color: rgb(156, 43, 43);
+}
+
+header button:active, 
+.filters button:active {
+    color: rgba(153, 40, 40, 0.849);
+}
+
+.filters {
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto Flex', sans-serif;
+
+    border:  1px solid rgba(0, 0, 0, 0.438);
+    margin: 15px;
+
+    padding: 20px;
+    width: 368px;
+
+    flex: 1;
+
+    position: relative;
+}
+
+.filters button {
+    background: none;
+    border: 0;
+    cursor: pointer;
+}
+
+.filters__head {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 38px;
+}
+
+.filters__head_close {
+}
+
+.sorting {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.349);
+    margin-top: 20px;
+}
+
+.sorting_pla {
+    color: rgba(0, 0, 0, 0.596);
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+select {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    color: rgba(77, 64, 64, 1);
+    font-size: 16px;
+    margin-left: -4px;
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.genres {
+    margin-top: 40px;
+}
+
+.genres label {
+    margin-left: 5px;
+}
+
+.list_checkbox {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+}
+
+input[type="checkbox" i] {
+    width: 15px;
+    height: 15px;
+}
+
+.pagination {
+    background-color: rgb(109, 13, 13);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
