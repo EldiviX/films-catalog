@@ -1,5 +1,8 @@
-import { useState } from 'react'
+import React from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
+import Select from './select.jsx'
+import Genres from './Genres.jsx'
 
 const sort = [
     { option: 'Популярности ↓'},
@@ -20,35 +23,9 @@ const year = [
     { option: '2012'},
 ]
 
-function Select({ title }) {
-    let listItem;
-    return (
-        <div className="sorting">
-            <div className="sorting_pla">{title}</div>
-            <select name="filter" id="">
-                {
-                    (title === 'Сортировать по:') ? 
-                    listItem = (sort.map(item => {
-                        return <option value={item.option} key={item.option}>{item.option}</option>
-                    })) : 
-                    listItem = (year.map(item => {
-                        return <option value={item.option} key={item.option}>{item.option}</option>
-                    }))
-                }
-            </select>
-        </div>
-    )
-}
-
-function Genres() {
-    
-}
-
 function App() {
-
     return (
         <>
-
             <header>
                 <div className="header__logo">
                     <button
@@ -71,25 +48,9 @@ function App() {
                         >x</button>
                     </div>
                 </div>
-                <Select title="Сортировать по:" />
-                <Select title="Год релиза"/>
-                <div className="genres">
-                    <div className="genres_name">Жанры</div>
-                    <div className="genres_list">
-                        <div className='list_checkbox'>
-                            <input type="checkbox" name="Комедия" id="kom" />
-                            <label htmlFor="kom">Комедия</label>
-                        </div>
-                        <div className='list_checkbox'>
-                            <input type="checkbox" name="Боевик" id="boev" />
-                            <label htmlFor="boev">Боевик</label>
-                        </div>
-                        <div className='list_checkbox'>
-                            <input type="checkbox" name="Драма" id="dram" />
-                            <label htmlFor="dram">Драма</label>
-                        </div>
-                    </div>
-                </div>
+                <Select title="Сортировать по:" sort={sort} year={year}/>
+                <Select title="Год релиза" sort={sort} year={year}/>
+                <Genres />
                 <div className="pagination">
                     ad
                 </div>

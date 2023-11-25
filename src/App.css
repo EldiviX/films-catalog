@@ -98,6 +98,14 @@ select {
     margin-top: 40px;
 }
 
+.genres_list {
+    margin-top: 5px;
+    max-height: 250px;
+    overflow: auto;
+    border-top: 1px solid rgba(0, 0, 0, 0.137);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.137);
+}
+
 .genres label {
     margin-left: 5px;
 }
