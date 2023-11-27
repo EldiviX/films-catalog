@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 export default function Genres() {
     const [listGenres, setListGenres] = useState([])
+    const [use, setUse] = useState(true)
     useEffect(() =>{
         const optionsGetGenres = {
             method: 'GET',
@@ -14,23 +15,44 @@ export default function Genres() {
             .then(response => response.json())
             .then(response => {
                 setListGenres(response.genres)
-                console.log(response.genress);
+                console.log(response);
             })
             .catch(err => console.error(err));
-    }, []) 
+    }, []);
+
+    function handleClick() {
+        setUse(!use)
+    }
+    
     return (
         <div className="genres">
-            <div className="genres_name">Жанры</div>
+            <div className="genres_header">
+                <div className="genres_name">Жанры</div>
+                <button className="genres_reset" onClick={handleClick}>Reset</button>
+            </div>
             <div className="genres_list">
                 {
                     listGenres.map(item => (
-                        <div className='list_checkbox'>
-                            <input type="checkbox" name={item.name} id={item.id} />
-                            <label htmlFor={item.id}>{item.name}</label>
-                        </div>
+                        <Checkbox key={item.id} item={item} use={use} onChange={()=>setUse(!use)}/>
                     ))
                 }
             </div>
+        </div>
+    )
+}
+
+function Checkbox({item, use, onChange}) {
+    const [check, setCheck] = useState(false)
+    useEffect(() => {
+        if (!use) {
+          setCheck(false);
+          onChange();
+        }
+      }, [use, onChange]);
+    return (
+        <div className='list_checkbox'>
+            <input type="checkbox" checked={check} onChange={e => setCheck(e.target.checked)} name={item.name} id={item.id} />
+            <label htmlFor={item.id}>{item.name}</label>
         </div>
     )
 }

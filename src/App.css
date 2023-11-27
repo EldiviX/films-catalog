@@ -33,12 +33,12 @@ header button {
 }
 
 header button:hover,
-.filters button:hover {
+.filters__head button:hover {
     color: rgb(156, 43, 43);
 }
 
-header button:active, 
-.filters button:active {
+.header button:active,
+.filters__head button:active {
     color: rgba(153, 40, 40, 0.849);
 }
 
@@ -57,7 +57,8 @@ header button:active,
     position: relative;
 }
 
-.filters button {
+.header button,
+.filters__head button {
     background: none;
     border: 0;
     cursor: pointer;
@@ -96,6 +97,31 @@ select {
 
 .genres {
     margin-top: 40px;
+}
+
+.genres_header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.genres_reset {
+    color: rgba(0, 0, 0, 0.753);
+    margin-top: -2px;
+    width: 55px;
+    height: 25px;
+    padding: 4px;
+    padding-top: 1px;
+    border: 1px solid rgba(0, 0, 0, 0.233);
+    border-radius: 50px;
+    background-color: rgba(0, 0, 0, 0.062);
+    cursor: pointer;
+}
+
+.genres_reset:hover {
+    color: rgb(114, 27, 27);
+    background-color: rgba(0, 0, 0, 0.137);
+    border: 1px solid rgba(75, 8, 8, 0.452);
 }
 
 .genres_list {
