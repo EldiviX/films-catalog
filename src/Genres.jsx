@@ -1,7 +1,9 @@
-import { useState, useEffect } from "react";
+import { useReducer, useEffect, useState } from "react";
+
+
 export default function Genres() {
     const [listGenres, setListGenres] = useState([])
-    const [use, setUse] = useState(true)
+    const [use, dispatch] = useReducer(filterReducer, true)
     useEffect(() =>{
         const optionsGetGenres = {
             method: 'GET',
@@ -10,18 +12,26 @@ export default function Genres() {
                 Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NDk2YjZiZTdjYjRlOGQwM2NhNzY4Y2EyNTE5YjFkOCIsInN1YiI6IjY1NWQwMjFmNTM4NjZlMDBhYmFlZGUyNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.289Q4vjlDtb2mmicnM0zigo4NIEKQ502YnXSBb-oyr4'
             }
         };
-          
+        
         fetch('https://api.themoviedb.org/3/genre/movie/list?language=ru', optionsGetGenres)
-            .then(response => response.json())
-            .then(response => {
-                setListGenres(response.genres)
-                console.log(response);
-            })
-            .catch(err => console.error(err));
+        .then(response => response.json())
+        .then(response => {
+            setListGenres(response.genres)
+            console.log(response);
+        })
+        .catch(err => console.error(err));
     }, []);
-
+    
     function handleClick() {
-        setUse(!use)
+        dispatch({
+            type: 'click',
+        })
+    }
+    
+    function handleChange() {
+        dispatch({
+            type: 'change'
+        })
     }
     
     return (
@@ -33,9 +43,9 @@ export default function Genres() {
             <div className="genres_list">
                 {
                     listGenres.map(item => (
-                        <Checkbox key={item.id} item={item} use={use} onChange={()=>setUse(!use)}/>
-                    ))
-                }
+                        <Checkbox key={item.id} item={item} use={use} onChange={()=>handleChange}/>
+                        ))
+                    }
             </div>
         </div>
     )
@@ -45,14 +55,25 @@ function Checkbox({item, use, onChange}) {
     const [check, setCheck] = useState(false)
     useEffect(() => {
         if (!use) {
-          setCheck(false);
-          onChange();
+            setCheck(false);
+            onChange();
         }
-      }, [use, onChange]);
+    }, [use, onChange]);
     return (
         <div className='list_checkbox'>
             <input type="checkbox" checked={check} onChange={e => setCheck(e.target.checked)} name={item.name} id={item.id} />
             <label htmlFor={item.id}>{item.name}</label>
         </div>
     )
+}
+
+function filterReducer(use, action) {
+    switch (action.type) {
+        case 'click':
+            return !use
+        case 'change':
+            return !use
+        default:
+            return use
+    }
 }
