@@ -1,79 +1,63 @@
-import { useReducer, useEffect, useState } from "react";
+import * as React from 'react';
+import Checkbox from '@mui/material/Checkbox';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import { useState, useEffect } from 'react';
 
+const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
+const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 export default function Genres() {
-    const [listGenres, setListGenres] = useState([])
-    const [use, dispatch] = useReducer(filterReducer, true)
-    useEffect(() =>{
-        const optionsGetGenres = {
+    const [genres, setGenres] = useState([]);
+    
+    useEffect(() => {
+        const options = {
             method: 'GET',
             headers: {
                 accept: 'application/json',
                 Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NDk2YjZiZTdjYjRlOGQwM2NhNzY4Y2EyNTE5YjFkOCIsInN1YiI6IjY1NWQwMjFmNTM4NjZlMDBhYmFlZGUyNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.289Q4vjlDtb2mmicnM0zigo4NIEKQ502YnXSBb-oyr4'
             }
         };
-        
-        fetch('https://api.themoviedb.org/3/genre/movie/list?language=ru', optionsGetGenres)
-        .then(response => response.json())
-        .then(response => {
-            setListGenres(response.genres)
-            console.log(response);
-        })
-        .catch(err => console.error(err));
-    }, []);
-    
-    function handleClick() {
-        dispatch({
-            type: 'click',
-        })
-    }
-    
-    function handleChange() {
-        dispatch({
-            type: 'change'
-        })
-    }
+
+        const fetchData = async () => {
+            try {
+                const response = await fetch('https://api.themoviedb.org/3/genre/movie/list?language=ru', options);
+                const data = await response.json();
+                setGenres(data.genres);
+                console.log(data);
+            } catch (err) {
+                console.error(err);
+            }
+        };
+        fetchData();
+    }, []); 
     
     return (
-        <div className="genres">
-            <div className="genres_header">
-                <div className="genres_name">Жанры</div>
-                <button className="genres_reset" onClick={handleClick}>Reset</button>
-            </div>
-            <div className="genres_list">
-                {
-                    listGenres.map(item => (
-                        <Checkbox key={item.id} item={item} use={use} onChange={()=>handleChange}/>
-                        ))
-                    }
-            </div>
-        </div>
+        <Autocomplete
+            size='small'
+            multiple
+            id="checkboxes-genres"
+            options={genres || []}
+            disableCloseOnSelect
+            limitTags={2}
+            getOptionLabel={(option) => option.name}
+            renderOption={(props, option, { selected }) => (
+                <li {...props}>
+                    <Checkbox
+                        icon={icon}
+                        checkedIcon={checkedIcon}
+                        style={{ marginRight: 8 }}
+                        checked={selected}
+                    />
+                    {option.name}
+                </li>
+            )}
+            style={{ marginTop: "10px" }}
+            renderInput={(params) => (
+                <TextField {...params} variant="standard" label="Жанры" />
+            )}
+        />
     )
-}
-
-function Checkbox({item, use, onChange}) {
-    const [check, setCheck] = useState(false)
-    useEffect(() => {
-        if (!use) {
-            setCheck(false);
-            onChange();
-        }
-    }, [use, onChange]);
-    return (
-        <div className='list_checkbox'>
-            <input type="checkbox" checked={check} onChange={e => setCheck(e.target.checked)} name={item.name} id={item.id} />
-            <label htmlFor={item.id}>{item.name}</label>
-        </div>
-    )
-}
-
-function filterReducer(use, action) {
-    switch (action.type) {
-        case 'click':
-            return !use
-        case 'change':
-            return !use
-        default:
-            return use
-    }
 }

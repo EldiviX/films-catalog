@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import Select from './select.jsx'
 import Genres from './Genres.jsx'
+import Slider from './Slider.jsx'
 
 const sort = [
     { option: 'Популярности ↓'},
@@ -39,20 +40,23 @@ function App() {
                 </div>
             </header>
 
-            <div className='filters'>
-                <div className="filters__head">
-                    <div className="filters__head_name">Фильтры</div>
-                    <div className="filters__head_close">
-                        <button
-                            // onClick={}
-                        >x</button>
+            <div className="main">
+                <div className='filters'>
+                    <div className="filters__head">
+                        <div className="filters__head_name">Фильтры</div>
+                        <div className="filters__head_close">
+                            <button
+                                // onClick={}
+                            >x</button>
+                        </div>
                     </div>
-                </div>
-                <Select title="Сортировать по:" sort={sort} year={year}/>
-                <Select title="Год релиза" sort={sort} year={year}/>
-                <Genres />
-                <div className="pagination">
-                    ad
+                    <Select title="Сортировать по:" sort={sort} year={year}/>
+                    <div className="year-release">Год релиза:</div>
+                    <Slider />
+                    <Genres />
+                    <div className="pagination">
+                        
+                    </div>
                 </div>
             </div>
 
