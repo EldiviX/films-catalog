@@ -4,6 +4,7 @@ import './App.css'
 import Select from './select.jsx'
 import Genres from './Genres.jsx'
 import Slider from './Slider.jsx'
+import Card from './Card.jsx'
 
 const sort = [
     { option: 'Популярности ↓'},
@@ -58,8 +59,10 @@ function App() {
                         
                     </div>
                 </div>
+                <div className="film_card">
+                    <Card />
+                </div>
             </div>
-
         </>
     )
 }

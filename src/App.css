@@ -46,14 +46,14 @@ header button:hover,
 }
 
 .main {
+    box-sizing: border-box;
     margin: 24px;
-    height: 100%;
+    flex: 1;
     display: flex; 
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .filters {
-    height: 100%;
     border-radius: 4px;
     background: var(--background-paper-elevation-1, #FFF);
 
@@ -62,7 +62,7 @@ header button:hover,
     font-family: 'Roboto Flex', sans-serif;
 
     padding: 16px;
-    width: 300px;
+    max-width: 300px;
 
     flex: 1;
 
@@ -174,4 +174,48 @@ input[type="checkbox" i] {
     font-size: 16px;
     padding-top: 25px;
     padding-bottom: 35px;
+}
+
+.card {
+    width: 300px;
+    height: 325;
+    border-radius: 4px;
+    background: var(--background-paper-elevation-1, #FFF);
+
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.20), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+.film_card {
+    margin-left: 10px;
+}
+
+.card_pic {
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    width: 100%;
+}
+
+.card_main {
+    font-family: 'Roboto', sans-serif;
+   
+}
+
+.card-description {
+    display: flex;
+    padding: 16px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card_main-name {
+    font-size: 24px;
+}
+
+.card_main-rating {
+    margin-top: 4px;
+    font-size: 14px;
+}
+
+.card_main-like {
+
 }
