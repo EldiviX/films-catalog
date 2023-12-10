@@ -57,7 +57,6 @@ export default function Genres() {
             style={{ marginTop: "10px" }}
             renderInput={(params) => (
                 <TextField {...params} variant="standard" label="Жанры" />
-            )}
         />
     )
 }
