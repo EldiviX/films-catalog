@@ -35,8 +35,6 @@ export default function Select({page}) {
         setStatus(value);
         console.log(value);
     }
-
-    // const cardList 
     
     return (
         <Autocomplete

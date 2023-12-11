@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Select from './select.jsx';
+import Select from './SelectComponent.jsx';
 import Genres from './Genres.jsx';
 import Slider from './Slider.jsx';
 import Card from './Card.jsx';
@@ -45,7 +45,7 @@ function AppContent() {
                         <button>{/* onClick={} */}</button>
                     </div>
                 </div>
-                <Select title="Сортировать по:" sort={sort} year={year}  page={page}/>
+                <Select title="Сортировать по:" page={page}/>
                 <div className="year-release">Год релиза:</div>
                 <Slider />
                 <Genres />
