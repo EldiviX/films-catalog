@@ -4,7 +4,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import { useState, useEffect } from 'react';
 import { useArrFilms } from './Context.jsx';
 
-export default function Select() {
+export default function Select({page}) {
     const { setFilms } = useArrFilms();
     const genres = ['Популярности', 'Рейтингу'];
     const [status, setStatus] = useState('Популярности');
@@ -22,16 +22,17 @@ export default function Select() {
             }
         };
 
-        fetch(`${sort}?language=ru&page=1`, options)
+        fetch(`${sort}?language=ru&page=${page}`, options)
             .then(response => response.json())
             .then(response => {
                 setFilms([...response.results]);
                 console.log(response);
             })
             .catch(err => console.error(err))
-    }, [status]); 
+    }, [status, page]); 
 
     function handleChange(e, value) {
+        setStatus(value);
         console.log(value);
     }
 
