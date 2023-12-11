@@ -36,12 +36,12 @@ export default function Genres() {
     
     return (
         <Autocomplete
-            size='small'
+            
             multiple
             id="checkboxes-genres"
             options={genres || []}
             disableCloseOnSelect
-            limitTags={2}
+            limitTags={1}
             getOptionLabel={(option) => option.name}
             renderOption={(props, option, { selected }) => (
                 <li {...props}>

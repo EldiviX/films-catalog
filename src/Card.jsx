@@ -1,5 +1,5 @@
 import * as React from 'react';
-import GradeIcon from '@mui/icons-material/Grade';
+import GradeOutlinedIcon from '@mui/icons-material/GradeOutlined';
 import IconButton from '@mui/material/IconButton';
 
 export default function Card() {
@@ -16,7 +16,7 @@ export default function Card() {
                     size='small'
                     style={{width:"40px", height:"40px"}}
                 >
-                    <GradeIcon />
+                    <GradeOutlinedIcon />
                 </IconButton>
             </div>
         </div>

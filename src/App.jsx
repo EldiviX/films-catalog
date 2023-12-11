@@ -48,7 +48,7 @@ function App() {
                         <div className="filters__head_close">
                             <button
                                 // onClick={}
-                            >x</button>
+                            ></button>
                         </div>
                     </div>
                     <Select title="Сортировать по:" sort={sort} year={year}/>
