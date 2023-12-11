@@ -2,8 +2,10 @@ import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { useState, useEffect } from 'react';
+import { useArrFilms } from './Context.jsx';
 
 export default function Select() {
+    const { setFilms } = useArrFilms();
     const genres = ['Популярности', 'Рейтингу'];
     const [status, setStatus] = useState('Популярности');
     
@@ -22,9 +24,11 @@ export default function Select() {
 
         fetch(`${sort}?language=ru&page=1`, options)
             .then(response => response.json())
-            .then(response => console.log(response))
+            .then(response => {
+                setFilms([...response.results]);
+                console.log(response);
+            })
             .catch(err => console.error(err))
-
     }, [status]); 
 
     function handleChange(e, value) {

@@ -56,18 +56,27 @@ header button:hover,
 .filters {
     border-radius: 4px;
     background: var(--background-paper-elevation-1, #FFF);
-
     box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.20), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
     font-family: 'Roboto', sans-serif;
     font-family: 'Roboto Flex', sans-serif;
-
     padding: 16px;
     max-width: 300px;
-
     flex: 1;
-
-    position: relative;
+    position: sticky;
+    top: 50px;
+    bottom: 1px;
+    height: 28%;
+    z-index: 10;
 }
+
+.main_filters {
+    height: 100%;
+    width: 380px;
+    position: relative;
+    display: block;
+}
+
+
 
 .header button,
 .filters__head button {
@@ -177,7 +186,9 @@ input[type="checkbox" i] {
 }
 
 .card {
-    width: 300px;
+    margin-bottom: 10px;
+    max-width: 240px;
+    margin-right: 10px;
     height: 325;
     border-radius: 4px;
     background: var(--background-paper-elevation-1, #FFF);
@@ -204,18 +215,20 @@ input[type="checkbox" i] {
     display: flex;
     padding: 16px;
     justify-content: space-between;
-    align-items: center;
+    align-items: start;
 }
 
 .card_main-name {
-    font-size: 24px;
+    font-size: 16px;
 }
 
 .card_main-rating {
     margin-top: 4px;
     font-size: 14px;
+    color: rgba(0, 0, 0, 0.623);
 }
 
 .card_main-like {
-
+    margin-top: 10px
 }
+
