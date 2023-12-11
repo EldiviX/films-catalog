@@ -16,10 +16,12 @@ body {
 }
 
 header {
-    background-color: #2196F3;
+    background-color: #1d2227;
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid rgba(0, 0, 0, 0.144);
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
 header button {
@@ -35,18 +37,24 @@ header button {
     font-size: 20px;
 }
 
+.header__logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 header button:hover,
 .filters__head button:hover {
-    color: rgb(77, 76, 76);
+    color: rgb(158, 157, 157);
 }
 
 .header button:active,
 .filters__head button:active {
-    color: rgb(77, 76, 76);
+    color: rgb(165, 164, 164);
 }
 
 .main {
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     margin: 24px;
     flex: 1;
     display: flex; 
@@ -72,6 +80,7 @@ header button:hover,
 }
 
 .main_filters {
+    margin-left: 20px;
     height: 100%;
     width: 380px;
     position: block;

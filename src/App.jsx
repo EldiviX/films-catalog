@@ -7,6 +7,8 @@ import Card from './Card.jsx';
 import { ArrFilmsProvider, useArrFilms } from './Context.jsx';
 import Pagination from '@mui/material/Pagination';
 import { useState } from 'react';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import LocalMoviesSharpIcon from '@mui/icons-material/LocalMoviesSharp';
 
 function App() {
     return (
@@ -29,10 +31,15 @@ function AppContent() {
         <>
         <header>
             <div className="header__logo">
-                <button>{/* onClick={} */}Фильмы</button>
+                <button>{/* onClick={} */}
+                    <LocalMoviesSharpIcon fontSize='medium' style={{marginBottom: '-5px', marginRight: '5px'}}/>
+                    Фильмы
+                </button>
             </div>
             <div className="header__exit">
-                <button>{/* onClick={} */}Выйти</button>
+                <button>{/* onClick={} */}
+                    <AccountCircleIcon fontSize='large' style={{marginBottom: '-5px'}}/>
+                </button>
             </div>
         </header>
 
