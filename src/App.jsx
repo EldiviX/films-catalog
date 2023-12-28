@@ -9,12 +9,23 @@ import Pagination from '@mui/material/Pagination';
 import { useState } from 'react';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LocalMoviesSharpIcon from '@mui/icons-material/LocalMoviesSharp';
+import { Routes, Route, Link } from 'react-router-dom';
+import Details from './details.jsx';
+
 
 function App() {
     return (
-        <ArrFilmsProvider>
-            <AppContent />
-        </ArrFilmsProvider>
+        <>
+            <ArrFilmsProvider>
+                <Routes>
+                    <Route path='/' >
+                        <Route index element={<AppContent />} />
+                        <Route path='/details/:id' element={<Details />} />
+                    </Route>
+                </Routes>
+            </ArrFilmsProvider>
+
+        </>
     );
 }
 
