@@ -200,10 +200,8 @@ input[type="checkbox" i] {
 }
 
 .card {
-    margin-bottom: 10px;
-    max-width: 240px;
-    margin-right: 10px;
-    height: 325;
+    width: 320px;
+    max-height: 280px;
     border-radius: 4px;
     background: var(--background-paper-elevation-1, #FFF);
 
@@ -222,14 +220,16 @@ input[type="checkbox" i] {
 
 .card_main {
     font-family: 'Roboto', sans-serif;
-   
+    height: 65px;
+    position: sticky;
 }
 
 .card-description {
-    display: flex;
     padding: 16px;
+    padding-top: 14px;
     justify-content: space-between;
-    align-items: start;
+    align-items:start;
+    position:sticky;
 }
 
 .card_main-name {
@@ -237,6 +237,8 @@ input[type="checkbox" i] {
 }
 
 .card_main-rating {
+    position: absolute;
+    bottom: 0;
     margin-top: 4px;
     font-size: 14px;
     color: rgba(0, 0, 0, 0.623);
