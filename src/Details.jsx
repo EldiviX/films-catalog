@@ -40,7 +40,7 @@ export default function Details() {
         const minutesWithLeadingZero = minutes < 10 ? `0${minutes}` : minutes;
       
         return `${formattedHours}:${minutesWithLeadingZero}`;
-      }
+    }
 
     return (
         <>
@@ -60,7 +60,7 @@ export default function Details() {
                 </div>
             </header>
             
-            <div className="main" style={{marginLeft: '70px'}}>
+            <div className="main" style={{marginLeft: '120px'}}>
                 <div className="details-img">
                     <img src={url} alt="" style={{width: '350px'}}/>
                 </div>
