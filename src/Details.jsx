@@ -8,7 +8,6 @@ import './Details.css';
 export default function Details() {
     const { id } = useParams();
     const [details, setDetails] = useState([]);
-    const [credits, setCredits] = useState([]);
 
     useEffect(() => {
         const options = {
@@ -23,13 +22,6 @@ export default function Details() {
             .then(response => response.json())
             .then(response => {
                 setDetails(response);
-            })
-            .catch(err => console.error(err));
-
-        fetch(`https://api.themoviedb.org/3/movie/${id}/credits?language=ru`, options)
-            .then(response => response.json())
-            .then(response => {
-                setCredits(response);
             })
             .catch(err => console.error(err));
     }, [])
