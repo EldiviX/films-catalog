@@ -9,7 +9,7 @@ export default function Details() {
     const { id } = useParams();
     const [details, setDetails] = useState([]);
     const [credits, setCredits] = useState([]);
-    // const { id } = useParams();
+
     useEffect(() => {
         const options = {
             method: 'GET',
