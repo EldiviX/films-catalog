@@ -23,7 +23,6 @@ export default function Details() {
             .then(response => response.json())
             .then(response => {
                 setDetails(response);
-                console.log(response);
             })
             .catch(err => console.error(err));
 
@@ -31,12 +30,10 @@ export default function Details() {
             .then(response => response.json())
             .then(response => {
                 setCredits(response);
-                console.log(response);
             })
             .catch(err => console.error(err));
     }, [])
-    console.log(details);
-    console.log(credits);
+
     const url = `https://image.tmdb.org/t/p/w500${details.poster_path}`
     const voteAverage = details.vote_average !== undefined ? details.vote_average.toFixed(1) : null;
 
