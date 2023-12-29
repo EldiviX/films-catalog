@@ -1,0 +1,42 @@
+.popap {
+    height: 100%;
+    width: 100%;
+    z-index: 8999;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.507);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.block {
+    padding: 24px;
+    position: relative;
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    border-radius: 4px;
+    z-index: 1;
+    margin-left: 20px;
+    margin-right: 20px;
+    flex-direction: column;
+    font-family: 'Roboto Flex', sans-serif;
+    font-size: 16px;
+    box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.20), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
+
+    width: 444px;
+    height: 183px;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.buttons {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 10px;
+}
+

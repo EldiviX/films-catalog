@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LocalMoviesSharpIcon from '@mui/icons-material/LocalMoviesSharp'
 import { Link } from "react-router-dom";
-import './Details.css';
+import './style/Details.css';
 
 export default function Details() {
     const { id } = useParams();

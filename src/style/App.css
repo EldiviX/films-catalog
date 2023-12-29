@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Flex:opsz,wght@8..144,149;8..144,407;8..144,599&display=swap');
 
 body, html {
+    margin: 0;
     height: 100%;
 }
 
