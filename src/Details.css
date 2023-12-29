@@ -4,8 +4,14 @@
 }
 
 .details {
+    margin-top: 20px;
     margin-left: 40px;   
 }
+
+.details-img {
+    margin-top: 20px;
+}
+
 .details-head {
     font-size: 40px;
     font-weight: bold;
