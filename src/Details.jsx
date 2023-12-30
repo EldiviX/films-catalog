@@ -1,20 +1,23 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LocalMoviesSharpIcon from '@mui/icons-material/LocalMoviesSharp'
 import { Link } from "react-router-dom";
+import LogoutIcon from '@mui/icons-material/Logout';
 import './style/Details.css';
 
 export default function Details() {
     const { id } = useParams();
     const [details, setDetails] = useState([]);
-
+    const token = Cookies.get('token');
+    
     useEffect(() => {
         const options = {
             method: 'GET',
             headers: {
                 accept: 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NDk2YjZiZTdjYjRlOGQwM2NhNzY4Y2EyNTE5YjFkOCIsInN1YiI6IjY1NWQwMjFmNTM4NjZlMDBhYmFlZGUyNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.289Q4vjlDtb2mmicnM0zigo4NIEKQ502YnXSBb-oyr4'
+                Authorization: `Bearer ${token}`
             }
         };
           
@@ -24,7 +27,7 @@ export default function Details() {
                 setDetails(response);
             })
             .catch(err => console.error(err));
-    }, [])
+    }, [token])
 
     const url = `https://image.tmdb.org/t/p/w500${details.poster_path}`
     const voteAverage = details.vote_average !== undefined ? details.vote_average.toFixed(1) : null;
@@ -42,6 +45,12 @@ export default function Details() {
         return `${formattedHours}:${minutesWithLeadingZero}`;
     }
 
+    function removeFromCookies() {
+        const currentPath = '/';
+        Cookies.remove('token');
+        window.location.href = currentPath;
+    }
+    
     return (
         <>
             <header>
@@ -55,8 +64,13 @@ export default function Details() {
                 </div>
                 <div className="header__exit">
                     <button>{/* onClick={} */}
-                        <AccountCircleIcon fontSize='large' style={{marginBottom: '-5px'}}/>
+                        <AccountCircleIcon fontSize='large' style={{marginBottom: '-5px', marginRight: '-20px'}}/>
                     </button>
+                    <Link to={'/'}>
+                        <button className='button_exit' onClick={removeFromCookies}>
+                            <LogoutIcon fontSize='medium' style={{marginBottom: ''}}/>
+                        </button>
+                    </Link>
                 </div>
             </header>
             

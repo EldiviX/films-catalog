@@ -90,7 +90,9 @@ header button:hover,
     display: flex;
 }
 
-
+.button_exit:hover {
+    color: rgb(151, 92, 92);
+}
 
 .header button,
 .filters__head button {

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Cookies from 'js-cookie';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { useState, useEffect } from 'react';
@@ -8,19 +9,27 @@ export default function Select({page}) {
     const { setFilms } = useArrFilms();
     const genres = ['Популярности', 'Рейтингу'];
     const [status, setStatus] = useState('Популярности');
+    const token = Cookies.get('token');
     
     useEffect(() => {
+
+        let options
+        
         const sort = (status === 'Популярности')
         ? 'https://api.themoviedb.org/3/movie/popular'
         : 'https://api.themoviedb.org/3/movie/top_rated';
-
-        const options = {
-            method: 'GET',
-            headers: {
-                accept: 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NDk2YjZiZTdjYjRlOGQwM2NhNzY4Y2EyNTE5YjFkOCIsInN1YiI6IjY1NWQwMjFmNTM4NjZlMDBhYmFlZGUyNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.289Q4vjlDtb2mmicnM0zigo4NIEKQ502YnXSBb-oyr4'
-            }
-        };
+        
+        if (!token) {
+            return;
+        } else {
+            options = {
+                method: 'GET',
+                headers: {
+                    accept: 'application/json',
+                    Authorization: `Bearer ${token}`
+                }
+            };
+        }
 
         fetch(`${sort}?language=ru&page=${page}`, options)
             .then(response => response.json())
@@ -29,7 +38,7 @@ export default function Select({page}) {
                 console.log(response);
             })
             .catch(err => console.error(err))
-    }, [status, page]); 
+    }, [status, page, token]); 
 
     function handleChange(e, value) {
         setStatus(value);

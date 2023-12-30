@@ -9,9 +9,11 @@ import Pagination from '@mui/material/Pagination';
 import { useState } from 'react';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LocalMoviesSharpIcon from '@mui/icons-material/LocalMoviesSharp';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { Routes, Route } from 'react-router-dom';
-import Details from './details.jsx';
+import Details from './Details.jsx';
 import Popup from './Popup.jsx';
+import Cookies from 'js-cookie';
 
 function App() {
     return (
@@ -32,27 +34,32 @@ function App() {
 function AppContent() {
     const { arrFilms } = useArrFilms();
     const [page, setPage] = useState(1);
-
+    
     const [firstPopupVisible, setFirstPopupVisible] = useState(false);
     const [secondPopupVisible, setSecondPopupVisible] = useState(false);
-
+    
     function closePopups() {
         setFirstPopupVisible(false);
         setSecondPopupVisible(false);
     }
-
+    
     function clickFirstPopup() {
         setFirstPopupVisible(false);
         setSecondPopupVisible(true);
     }
-
+    
     function clickSecondPopup() {
         closePopups();
     }
-
-    function handleChangePagination(value) {
+    
+    function handleChangePagination(e, value) {
         console.log(value);
         setPage(value);
+    }
+    
+    function removeFromCookies() {
+        Cookies.remove('token');
+        location.reload();
     }
 
     return (
@@ -66,10 +73,15 @@ function AppContent() {
                 </div>
                 <div className="header__exit">
                     <button onClick={() => setFirstPopupVisible(true)}>
-                        <AccountCircleIcon fontSize='large' style={{marginBottom: '-5px'}}/>
+                        <AccountCircleIcon fontSize='large' style={{marginBottom: '-5px', marginRight: '-20px'}}/>
+                    </button>
+                    <button className='button_exit' onClick={removeFromCookies}>
+                        <LogoutIcon fontSize='medium' style={{marginBottom: ''}}/>
                     </button>
                 </div>
             </header>
+
+            {console.log(Cookies.get('token'))}
 
             <div className="main">
                 <div className="main_filters">
@@ -84,7 +96,7 @@ function AppContent() {
                     <div className="year-release">Год релиза:</div>
                     <Slider />
                     <Genres />
-                    <Pagination onChange={handleChangePagination} siblingCount={0} className="pagination" count={500} color="primary" />
+                    <Pagination onChange={handleChangePagination} siblingCount={0} className="pagination" count={400} color="primary" />
                 </div>
                 </div>
                 <div className="film_card" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'flex-start' }}>
@@ -97,5 +109,7 @@ function AppContent() {
         </>
     );
 }
+
+  
 
 export default App;
